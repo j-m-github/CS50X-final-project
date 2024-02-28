@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Delete
+{% endblock %}
+
+{% block main %}
+    <h3>Delete</h3><br>
+    <form action="/delete" method="post">
+        <div class="mb-3 add-box bg-light border border-primary border-3">
+            <select autofocus class="form-select mx-auto w-auto" name="deletion">
+                <option disabled selected>Categories</option>
+                <optgroup label="Restaurants">
+                    {% for row in restaurants %}
+                        <option value="{{ row.id }}_{{ row.input }}">{{ row.input }}</option>
+                    {% endfor %}
+                </optgroup>
+                <optgroup label="Dishes">
+                    {% for row in dishes %}
+                        <option value="{{ row.id }}_{{ row.input }}">{{ row.input }}</option>
+                    {% endfor %}
+                </optgroup>
+                <optgroup label="Cuisines">
+                    {% for row in cuisines %}
+                        <option value="{{ row.id }}_{{ row.input }}">{{ row.input }}</option>
+                    {% endfor %}
+                </optgroup>
+                <optgroup label="Sensory Descriptors">
+                    {% for row in senses %}
+                        <option value="{{ row.id }}_{{ row.input }}">{{ row.input }}</option>
+                    {% endfor %}
+                </optgroup>
+                <optgroup label="Dietary Restrictions">
+                    {% for row in dietaries %}
+                        <option value="{{ row.id }}_{{ row.input }}">{{ row.input }}</option>
+                    {% endfor %}
+                </optgroup>
+            </select>
+            <p></p>
+            <br><button class="btn btn-primary" type="submit">Delete</button>
+        </div>
+    </form>
+    
+{% endblock %}

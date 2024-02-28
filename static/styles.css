@@ -1,0 +1,64 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+
+
+.container
+{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.column
+{
+    width: 33.33333%;
+}
+
+.scroll
+{
+    width: 33.33333%;
+    overflow-y: auto;
+}
+
+.check
+{
+    text-align: left;
+}
+
+.tag
+{
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    text-align: left;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.tag-head
+{
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.add-box
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding: 25px;
+}
+

@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dish Tag
+{% endblock %}
+
+{% block main %}
+    <h3>Dish Tags</h3><br>
+    <form action="/dish_tag" method="post">
+        <button class="btn btn-primary" type="submit">Commit Tags</button>
+        <a href="/dish_tag" class="btn btn-secondary" role="button">Reset</a><br><br>
+        <div class="accordion" id="accordionExample">
+            {% for a in dishes %}
+            <div class="tag-head accordion-item">
+                <h4 class="accordion-header"><button class="accordion-button collapsed border border-primary border-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ a.id }}" aria-expanded="false" aria-controls="collapse{{ a.id }}">
+                    {{ a.input }}
+                </button></h4>
+            </div>
+                <div class="accordion-collapse collapse" id="collapse{{ a.id }}">
+                <div class="accordion-body tag bg-light border border-primary border-3">
+                    <u><h5><center>Restaurant Tags</center></h5></u>
+                    <div>
+                        {% for b in restaurants %}
+                            {% set check = {'foo': False} %}
+                            {% for row in tags %}
+                                {% if b.id == row.item_id and a.id == row.tag_id %}
+                                    {% if check.update({'foo': True}) %} {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if check.foo %}
+                                <input type="checkbox" id="{{ b.input }}" name="restaurant" value="{{ b.id }}_{{ a.id }}" checked="checked">
+                                <label for="{{ b.input }}"> {{ b.input }}</label><br>
+                            {% else %}
+                                <input type="checkbox" id="{{ b.input }}" name="restaurant" value="{{ b.id }}_{{ a.id }}">
+                                <label for="{{ b.input }}"> {{ b.input }}</label><br>
+                            {% endif %}
+                        {% endfor %}<br>
+                    </div>
+                    <u><h5><center>Cuisine Tags</center></h5></u>
+                    <div>
+                        {% for b in cuisines %}
+                            {% set check = {'foo': False} %}
+                            {% for row in tags %}
+                                {% if a.id == row.item_id and b.id == row.tag_id %}
+                                    {% if check.update({'foo': True}) %} {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if check.foo %}
+                                <input type="checkbox" id="{{ b.input }}" name="cuisine" value="{{ a.id }}_{{ b.id }}" checked="checked">
+                                <label for="{{ b.input }}"> {{ b.input }}</label><br>
+                            {% else %}
+                                <input type="checkbox" id="{{ b.input }}" name="cuisine" value="{{ a.id }}_{{ b.id }}">
+                                <label for="{{ b.input }}"> {{ b.input }}</label><br>
+                            {% endif %}
+                        {% endfor %}<br>
+                    </div>
+                    <u><h5><center>Sensory Tags</center></h5></u>
+                    <div>
+                        {% for b in senses %}
+                            {% set check = {'foo': False} %}
+                            {% for row in tags %}
+                                {% if a.id == row.item_id and b.id == row.tag_id %}
+                                    {% if check.update({'foo': True}) %} {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if check.foo %}
+                                <input type="checkbox" id="{{ b.input }}" name="sense" value="{{ a.id }}_{{ b.id }}" checked="checked">
+                                <label for="{{ b.input }}"> {{ b.input }}</label><br>
+                            {% else %}
+                                <input type="checkbox" id="{{ b.input }}" name="sense" value="{{ a.id }}_{{ b.id }}">
+                                <label for="{{ b.input }}"> {{ b.input }}</label><br>
+                            {% endif %}
+                        {% endfor %}<br>
+                    </div>
+                    <u><h5><center>Dietary Tags</center></h5></u>
+                    <div>
+                        {% for b in dietaries %}
+                            {% set check = {'foo': False} %}
+                            {% for row in tags %}
+                                {% if a.id == row.item_id and b.id == row.tag_id %}
+                                    {% if check.update({'foo': True}) %} {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if check.foo %}
+                                <input type="checkbox" id="{{ b.input }}" name="dietary" value="{{ a.id }}_{{ b.id }}" checked="checked">
+                                <label for="{{ b.input }}"> {{ b.input }}</label><br>
+                            {% else %}
+                                <input type="checkbox" id="{{ b.input }}" name="dietary" value="{{ a.id }}_{{ b.id }}">
+                                <label for="{{ b.input }}"> {{ b.input }}</label><br>
+                            {% endif %}
+                        {% endfor %}<br>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+        </div>
+{% endblock %}

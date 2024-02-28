@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+{% block main %}
+    <form action="/" method="post">
+        <table class="table table-bordered container-fluid">
+            <thead>
+                <h3>Dashboard</h3><br>
+                <tr>
+                    <th class="table-primary column">Restaurants</th>
+                    <th class="table-primary column">Cuisines</th>
+                    <th class="table-primary column">Dietary Restrictions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="table-light column scroll">
+                        {% for restaurant in restaurants %}
+                            <button class="" name="restaurant" type="submit" value="{{ restaurant.id }}">{{ restaurant.input }}</button><br>
+                        {% endfor %}
+                    </td>
+                    <td class="table-light column scroll">
+                        {% for row in cuisines %}
+                            {% set check = {'foo': False} %}
+                            {% for y in y_cuisines %}
+                                {% if row.id == y|int %}
+                                    {% if check.update({'foo': True}) %} {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if check.foo %}
+                                <input type="checkbox" id="{{ row.input }}" name="cuisine" value="{{ row.id }}" checked="checked">
+                                <label for="{{ row.input }}">{{ row.input }}</label><br>
+                            {% else %}
+                                <input type="checkbox" id="{{ row.input }}" name="cuisine" value="{{ row.id }}">
+                                <label for="{{ row.input }}">{{ row.input }}</label><br>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="table-light column scroll">
+                        {% for row in dietaries %}
+                            {% set check = {'foo': False} %}
+                            {% for y in y_dietaries %}
+                                {% if row.id == y|int %}
+                                    {% if check.update({'foo': True}) %} {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if check.foo %}
+                                <input type="checkbox" id="{{ row.input }}" name="dietary" value="{{ row.id }}" checked="checked">
+                                <label for="{{ row.input }}">{{ row.input }}</label><br>
+                            {% else %}
+                                <input type="checkbox" id="{{ row.input }}" name="dietary" value="{{ row.id }}">
+                                <label for="{{ row.input }}">{{ row.input }}</label><br>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
+            <thead>
+                <tr>
+                    <th class="table-primary column">Dishes</th>
+                    <th class="table-primary column">Sensory Descriptors</th>
+                    <th class="table-primary column">Takeout</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="table-light column scroll">
+                        {% for dish in dishes %}
+                            <button class="" name="dish" type="submit" value="{{ dish.id }}">{{ dish.input }}</button><br>
+                        {% endfor %}
+                    </td>
+                    <td class="table-light column scroll">
+                        {% for row in senses %}
+                            {% set check = {'foo': False} %}
+                            {% for y in y_senses %}
+                                {% if row.id == y|int %}
+                                    {% if check.update({'foo': True}) %} {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if check.foo %}
+                                <input type="checkbox" id="{{ row.input }}" name="sense" value="{{ row.id }}" checked="checked">
+                                <label for="{{ row.input }}">{{ row.input }}</label><br>
+                            {% else %}
+                                <input type="checkbox" id="{{ row.input }}" name="sense" value="{{ row.id }}">
+                                <label for="{{ row.input }}">{{ row.input }}</label><br>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="table-light column scroll">
+                        {% for row in takeout %}
+                            {% set check = {'foo': False} %}
+                            {% for y in y_takeout %}
+                                {% if row.id == y|int %}
+                                    {% if check.update({'foo': True}) %} {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if check.foo %}
+                                <input type="checkbox" id="takeout" name="takeout" value="{{ row.id }}" checked="checked">
+                                <label for="takeout"> Takeout</label>
+                            {% else %}
+                                <input type="checkbox" id="takeout" name="takeout" value="{{ row.id }}">
+                                <label for="takeout"> Takeout</label>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <a href="/" class="btn btn-secondary" role="button">Reset</a>
+
+    </form>
+    {% endblock %}
